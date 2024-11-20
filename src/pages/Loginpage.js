@@ -16,7 +16,7 @@ const LoginPage = () => {
     axios.post("http://localhost:3001/auth/login", { email, password })
       .then(result => {
       //console.log(result);
-        if (result.data === "Success") {
+        if (result.data.success) {
           navigate("/home")
         } else {
           navigate("/signup")
