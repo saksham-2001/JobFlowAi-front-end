@@ -1,8 +1,9 @@
-// src/pages/SignupPage.js
-import { useState, React } from 'react';
+
+import { useState, React, useEffect } from 'react';
 import './Auth.css';
 import axios from 'axios';
 import { useNavigate } from "react-router-dom";
+
 const SignupPage = () => {
 
   const [name, setName] = useState()
@@ -10,9 +11,19 @@ const SignupPage = () => {
   const [password, setPassword] = useState()
   const navigate = useNavigate()
 
+  useEffect(() => {
+    axios.get("http://localhost:3001/auth/isauth",{withCredentials: true})
+      .then(result => {
+        if (result.data.success) {
+          alert("you are in an existing session.");
+          navigate("/home");
+        }
+      })
+  }, [navigate]);
+
   const handleSubmit = (e) => {
     e.preventDefault()
-    axios.post("http://localhost:3001/auth/signup", { name, email, password })
+    axios.post("http://localhost:3001/auth/signup", { name, email, password})
       .then(result => {
         if (result.data.success == false) {
           alert("You are an existing user. Please Login");

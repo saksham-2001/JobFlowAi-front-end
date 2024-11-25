@@ -1,9 +1,39 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import './homepage.css';
+import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
+
 
 function App() {
+ const[name, setName]= useState('User');
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    axios.get("http://localhost:3001/auth/isauth",{withCredentials: true})
+      .then(result => {
+        if (result.data.success) {
+          setName(result.data.name);
+          
+        }
+        else{
+          navigate("/login");
+        }
+      })
+  }, [navigate]);
+
+
+  const handleLogout = () => {
+    axios.get("http://localhost:3001/auth/logout", {withCredentials: true})
+    .then(result=>{
+   if (result.data.success){
+    alert("You have logged out successfully");
+    navigate('/login');} 
+  }).catch(err=>{console.log(err)})
+  };
+
   return (
     <div className="App">
+      {/* Navbar */}
       <header className="navbar">
         <h1 className="logo">MyWebsite</h1>
         <nav>
@@ -12,16 +42,27 @@ function App() {
             <li><a href="#about">About</a></li>
             <li><a href="#services">Services</a></li>
             <li><a href="#contact">Contact</a></li>
+            <li>
+              <button className="logout-button" onClick={handleLogout}>
+                Logout
+              </button>
+            </li>
           </ul>
         </nav>
       </header>
 
+      {/* Hero Section */}
       <section className="hero">
-        <h2>Welcome to MyWebsite</h2>
-        <p>Your one-stop solution for amazing web experiences.</p>
+        <h2 className="welcome-message">
+          Welcome {name}! 
+        </h2>
+        <p className="hero-description">
+          Your one-stop solution for amazing web experiences.
+        </p>
         <button className="cta-button">Get Started</button>
       </section>
 
+      {/* Services Section */}
       <section className="content">
         <h3>Our Services</h3>
         <div className="cards">
@@ -40,6 +81,7 @@ function App() {
         </div>
       </section>
 
+      {/* Footer */}
       <footer className="footer">
         <p>© 2024 MyWebsite. All rights reserved.</p>
       </footer>
