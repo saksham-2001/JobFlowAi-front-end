@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import './homepage.css';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-
+const basename ='/JobFlowAi-front-end'
 
 function App() {
  const[name, setName]= useState('User');
@@ -16,7 +16,7 @@ function App() {
           
         }
         else{
-          navigate("/login");
+          navigate(`${basename}/login`);
         }
       })
   }, [navigate]);
@@ -27,7 +27,7 @@ function App() {
     .then(result=>{
    if (result.data.success){
     alert("You have logged out successfully");
-    navigate('/login');} 
+    navigate(`${basename}/login`);} 
   }).catch(err=>{console.log(err)})
   };
 
