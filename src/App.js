@@ -10,7 +10,7 @@ import './App.css';
 function App() {
   return (
 
-    <Router>
+    <Router basename="/JobFlowAi-front-end">
 
       <div className="App">
         {/* <nav className="navbar">
