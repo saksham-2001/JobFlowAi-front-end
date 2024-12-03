@@ -10,13 +10,13 @@ const SignupPage = () => {
   const [email, setEmail] = useState()
   const [password, setPassword] = useState()
   const navigate = useNavigate()
-  const basename ='/JobFlowAi-front-end'
+  
   useEffect(() => {
     axios.get("http://localhost:3001/auth/isauth",{withCredentials: true})
       .then(result => {
         if (result.data.success) {
           alert("you are in an existing session.");
-          navigate(`${basename}/home`);
+          navigate("/home");
         }
       })
   }, [navigate]);
@@ -27,11 +27,11 @@ const SignupPage = () => {
       .then(result => {
         if (result.data.success == false) {
           alert("You are an existing user. Please Login");
-          navigate(`${basename}/login`);
+          navigate("/login");
         }
         else {
           alert("Signed up Successfuly. Please Login");
-          navigate(`${basename}/login`);
+          navigate("/login");
         }
 
 

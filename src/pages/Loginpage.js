@@ -3,7 +3,7 @@ import axios from 'axios';
 import { useNavigate } from "react-router-dom";
 import { FaGoogle } from 'react-icons/fa';
 import './Auth.css';
-const basename ='/JobFlowAi-front-end'
+
 
 const LoginPage = () => {
   const CLIENT_ID = process.env.CLIENT_ID;
@@ -18,7 +18,7 @@ const LoginPage = () => {
       .then(result => {
         if (result.data.success) {
           alert("you are in an existing session.");
-          navigate(`${basename}/home`);
+          navigate("/home");
         }
       })
   }, [navigate]);
@@ -40,10 +40,10 @@ const LoginPage = () => {
         console.log(result.data);
         if (result.data.success) {
 
-          navigate(`${basename}/home`)
+          navigate("/home")
           console.log(result.data.message);
         } else {
-          navigate(`${basename}/signup`)
+          navigate("/signup")
           alert("You are not registered to this service")
 
         }
