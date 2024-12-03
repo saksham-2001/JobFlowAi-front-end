@@ -6,8 +6,8 @@
   <title>Redirecting...</title>
   <script>
     // Redirect unknown routes to index.html for React Router to handle
-    var path = window.location.pathname.replace('/JobFlowAi-front-end', '');
-    window.location.href = '/JobFlowAi-front-end/index.html?redirect=' + path;
+    var path = window.location.pathname;
+    window.location.href = `/#${path}`;
   </script>
 </head>
 <body>
