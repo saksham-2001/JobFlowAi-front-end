@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
+import { HashRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import LoginPage from './pages/Loginpage.js';
 import SignupPage from './pages/Signuppage.js';
 import Homepage from './pages/homepage.js';
@@ -10,7 +10,7 @@ import './App.css';
 function App() {
   return (
 
-    <Router basename="/JobFlowAi-front-end">
+    <Router>
 
       <div className="App">
         {/* <nav className="navbar">

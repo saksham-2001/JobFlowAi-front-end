@@ -2,7 +2,7 @@
 import { useState, React, useEffect } from 'react';
 import './Auth.css';
 import axios from 'axios';
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 
 const SignupPage = () => {
 
@@ -54,7 +54,7 @@ const SignupPage = () => {
         <button type="submit">Sign Up</button>
       </form>
       <p>
-        Already have an account? <a href="/login">Log in</a>
+        Already have an account? <Link to="/login">Login</Link>
       </p>
     </div>
   );

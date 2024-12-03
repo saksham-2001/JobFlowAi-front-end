@@ -12,10 +12,12 @@ function App() {
     axios.get("http://localhost:3001/auth/isauth",{withCredentials: true})
       .then(result => {
         if (result.data.success) {
+          console.log(result);
           setName(result.data.name);
           
         }
         else{
+          console.log(result);
           navigate("/login");
         }
       })
