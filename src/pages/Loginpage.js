@@ -6,8 +6,8 @@ import './Auth.css';
 
 
 const LoginPage = () => {
-  const CLIENT_ID = process.env.CLIENT_ID;
-  const REDIRECT_URL = process.env.REDIRECT_URL
+  const CLIENT_ID = process.env.REACT_APP_CLIENT_ID;
+  const REDIRECT_URL=process.env.REACT_APP_REDIRECT_URL;
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
   const navigate = useNavigate();
@@ -26,9 +26,10 @@ const LoginPage = () => {
   const handleGoogleLogin = () => {
     // Google OAuth authorization URL
     const googleOAuthURL = `https://accounts.google.com/o/oauth2/v2/auth?response_type=code&client_id=${CLIENT_ID}&redirect_uri=${REDIRECT_URL}&scope=email%20profile`;
-    console.log(googleOAuthURL);
+    console.log(CLIENT_ID);
+    console.log(REDIRECT_URL);
     // Redirect to Google OAuth authorization page
-    window.location.href = googleOAuthURL;
+     window.location.href = googleOAuthURL;
 
 
   };
