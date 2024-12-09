@@ -4,6 +4,7 @@ import { HashRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import LoginPage from './pages/Loginpage.js';
 import SignupPage from './pages/Signuppage.js';
 import Homepage from './pages/homepage.js';
+import MFASetup from './pages/MFAsetup.js';
 
 import './App.css';
 
@@ -24,6 +25,7 @@ function App() {
           <Route path="/login" element={<LoginPage />} />
           <Route path="/signup" element={<SignupPage />} />
           <Route path="/home" element={<Homepage />} />
+          <Route path="/mfasetup" element={<MFASetup />} />
         </Routes>
       </div>
     </Router>

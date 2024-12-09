@@ -1,15 +1,17 @@
 import { React, useState, useEffect } from 'react';
 import axios from 'axios';
-import { useNavigate , Link } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import { FaGoogle } from 'react-icons/fa';
 import './Auth.css';
 
 
 const LoginPage = () => {
   const CLIENT_ID = process.env.REACT_APP_CLIENT_ID;
-  const REDIRECT_URL=process.env.REACT_APP_REDIRECT_URL;
+  const REDIRECT_URL = process.env.REACT_APP_REDIRECT_URL;
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
+  const [mfacode, setMfaCode] = useState();
+  const [isMfaRequired, setIsMfaRequired] = useState(false);
   const navigate = useNavigate();
 
 
@@ -29,10 +31,11 @@ const LoginPage = () => {
     console.log(CLIENT_ID);
     console.log(REDIRECT_URL);
     // Redirect to Google OAuth authorization page
-     window.location.href = googleOAuthURL;
+    window.location.href = googleOAuthURL;
 
 
   };
+  const handleMfaSubmit = () => { }
 
   const handleSubmit = (e) => {
     e.preventDefault()
@@ -52,10 +55,10 @@ const LoginPage = () => {
       })
       .catch(err => {
         console.log(err);
-        if(err.response.status == 400){ alert("Email and password are required")}
-        if(err.response.status == 404||401){ alert("Invalid email or password")}
-        if(err.response.status == 500){ alert("Server is not responding")}
-        
+        if (err.response.status == 400) { alert("Email and password are required") }
+        if (err.response.status == 404 || 401) { alert("Invalid email or password") }
+        if (err.response.status == 500) { alert("Server is not responding") }
+
       })
   }
 
@@ -81,6 +84,7 @@ const LoginPage = () => {
       </button>
     </div>
   );
+
 };
 
 export default LoginPage;

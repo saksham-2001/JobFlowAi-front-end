@@ -6,6 +6,7 @@ import { useNavigate } from 'react-router-dom';
 
 function App() {
  const[name, setName]= useState('User');
+ const[isMFAregistered, setIsMFAregistered] = useState(false);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -14,6 +15,7 @@ function App() {
         if (result.data.success) {
           console.log(result);
           setName(result.data.name);
+          setIsMFAregistered(result.data.isregistered);
           
         }
         else{
@@ -24,6 +26,11 @@ function App() {
   }, [navigate]);
 
 
+
+
+  
+
+
   const handleLogout = () => {
     axios.get("http://localhost:3001/auth/logout", {withCredentials: true})
     .then(result=>{
@@ -32,6 +39,11 @@ function App() {
     navigate('/login');} 
   }).catch(err=>{console.log(err)})
   };
+  
+  const handleMFAsetup =() =>{
+    navigate('/mfasetup');
+  }
+
 
   return (
     <div className="App">
@@ -43,12 +55,18 @@ function App() {
             <li><a href="#home">Home</a></li>
             <li><a href="#about">About</a></li>
             <li><a href="#services">Services</a></li>
-            <li><a href="#contact">Contact</a></li>
-            <li>
+            
+          <li>
               <button className="logout-button" onClick={handleLogout}>
                 Logout
               </button>
             </li>
+            {(!isMFAregistered) &&(<li>
+              <button className="logout-button" onClick={handleMFAsetup}>
+                MFAsetup
+              </button>
+            </li>)}
+   
           </ul>
         </nav>
       </header>
