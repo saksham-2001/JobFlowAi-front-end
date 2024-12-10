@@ -1,0 +1,41 @@
+.auth-container {
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    text-align: center;
+    background: #f9f9f9;
+  }
+  
+  .qr-container {
+    margin: 20px auto;
+  }
+  
+  .secret-container {
+    margin-top: 10px;
+    font-size: 14px;
+  }
+  
+  .secret-key {
+    background: #eee;
+    padding: 10px;
+    font-family: monospace;
+    word-break: break-all;
+    display: inline-block;
+  }
+  
+  .mfa-complete-button {
+    margin-top: 20px;
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .mfa-complete-button:hover {
+    background-color: #0056b3;
+  }
+  
