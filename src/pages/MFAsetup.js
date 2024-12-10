@@ -1,25 +1,55 @@
 import React, { useEffect, useState } from "react";
-//import QRCodeCanvas from "qrcode.react";
+import { QRCodeCanvas } from "qrcode.react";
+import qrcode from "qrcode";
 import './MFAsetup.css';
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 const MFASetup = () => {
-    const [secret, setSecret] = useState("JBSWY3DPEHPK3PXP"); // Replace with dynamic generation logic if needed
+    const [qrdata, setQrdata] = useState("http://localhost:3001");
+    const [otpauth, setOtpauth] = useState();
+    const [secret, setSecret] = useState();
     const navigate = useNavigate();
-    // QR Code Data
-    const qrCodeData = `otpauth://totp/MyApp:${encodeURIComponent(
-        "user@example.com"
-    )}?secret=${secret}&issuer=MyApp`;
 
     useEffect(() => {
-        axios.get("http:localhost:3001/auth/mfa/mfasetup", { withCredentials: true })
+        axios.get("http://localhost:3001/auth/mfa/mfasetup", { withCredentials: true })
             .then(result => {
                 if (result.data.success) {
+                    setQrdata(result.data.imageUrl);
 
+                    setSecret(result.data.key);
+                    console.log(result.data.imageUrl);
+                }
+                else {
+                    console.log(qrdata);
                 }
 
             })
     }, [navigate])
+
+
+    const handlecompletesetup = () => {
+        axios.post("http://localhost:3001/auth/mfa/mfaregister", { secret }, { withCredentials: true })
+            .then(result => {
+                if (result.data.success) {
+                    alert("You have successfully setup MFa")
+                    navigate('/home')
+                }
+                else {
+                    alert("An error Occured. Please try again");
+                    navigate('/home');
+                }
+
+            })
+    }
+
+    // useEffect(() => {
+
+    //     setQrdata(qrcode.toDataURL(otpauth));
+
+
+    // }, [otpauth]);
+
+
 
     return (
         <div className="auth-container">
@@ -29,13 +59,13 @@ const MFASetup = () => {
                 (MFA). Use an authenticator app to scan the QR code below or manually
                 enter the secret key.
             </p>
-            {/* <div className="qr-container">
-                <QRCodeCanvas value={qrCodeData} size={200} />
-            </div> */}
-            <div className="secret-container">
+            <div className="qr-container">
+                <QRCodeCanvas value={qrdata} size={200} />
+            </div>
+            {/* <div className="secret-container">
                 <label>Secret Key:</label>
                 <div className="secret-key">{secret}</div>
-            </div>
+            </div> */}
             <p>
                 Follow these steps to set up MFA:
                 <ol>
@@ -45,7 +75,7 @@ const MFASetup = () => {
                     <li>Enter the generated code to complete the setup.</li>
                 </ol>
             </p>
-            <button className="mfa-complete-button">Complete Setup</button>
+            <button onClick={handlecompletesetup} className="mfa-complete-button">Complete Setup</button>
             <p>
                 <Link to="/home">Skip for now</Link>
             </p>
