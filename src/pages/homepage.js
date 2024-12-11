@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import './homepage.css';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import { API_BASE_URL } from '../constants';
 
 
 function App() {
@@ -10,7 +11,7 @@ function App() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    axios.get("http://localhost:3001/auth/isauth",{withCredentials: true})
+    axios.get(`${API_BASE_URL}/auth/isauth`,{withCredentials: true})
       .then(result => {
         if (result.data.success) {
           console.log(result);
@@ -32,7 +33,7 @@ function App() {
 
 
   const handleLogout = () => {
-    axios.get("http://localhost:3001/auth/logout", {withCredentials: true})
+    axios.get(`${API_BASE_URL}/auth/logout`, {withCredentials: true})
     .then(result=>{
    if (result.data.success){
     alert("You have logged out successfully");

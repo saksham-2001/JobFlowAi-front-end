@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
 import axios from 'axios';
+import { API_BASE_URL } from '../constants';
 
 const MFAverify = () => {
   const [otp, setOtp] = useState('');
@@ -10,7 +11,7 @@ const MFAverify = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     // Add logic to verify the OTP here
-    axios.post("http://localhost:3001/auth/mfa/mfaverify", { email, otp }, {withCredentials: true})
+    axios.post(`${API_BASE_URL}/auth/mfa/mfaverify`, { email, otp }, {withCredentials: true})
       .then(result => {
 
         if (result.data.success) {

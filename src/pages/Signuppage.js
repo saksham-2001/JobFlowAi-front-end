@@ -3,7 +3,7 @@ import { useState, React, useEffect } from 'react';
 import './Auth.css';
 import axios from 'axios';
 import { useNavigate, Link } from "react-router-dom";
-
+import { API_BASE_URL } from '../constants';
 const SignupPage = () => {
 
   const [name, setName] = useState()
@@ -12,7 +12,7 @@ const SignupPage = () => {
   const navigate = useNavigate()
   
   useEffect(() => {
-    axios.get("http://localhost:3001/auth/isauth",{withCredentials: true})
+    axios.get(`${API_BASE_URL}/auth/isauth`,{withCredentials: true})
       .then(result => {
         if (result.data.success) {
           alert("you are in an existing session.");
@@ -23,7 +23,7 @@ const SignupPage = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    axios.post("http://localhost:3001/auth/signup", { name, email, password})
+    axios.post(`${API_BASE_URL}/auth/signup`, { name, email, password})
       .then(result => {
         if (result.data.success == false) {
           alert("You are an existing user. Please Login");

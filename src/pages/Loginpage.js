@@ -3,7 +3,7 @@ import axios from 'axios';
 import { useNavigate, Link } from "react-router-dom";
 import { FaGoogle } from 'react-icons/fa';
 import './Auth.css';
-
+import { API_BASE_URL } from '../constants';
 
 const LoginPage = () => {
   const CLIENT_ID = process.env.REACT_APP_CLIENT_ID;
@@ -16,7 +16,7 @@ const LoginPage = () => {
 
 
   useEffect(() => {
-    axios.get("http://localhost:3001/auth/isauth", { withCredentials: true })
+    axios.get(`${API_BASE_URL}/auth/isauth`, { withCredentials: true })
       .then(result => {
         if (result.data.success) {
           alert("you are in an existing session.");
@@ -39,7 +39,7 @@ const LoginPage = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    axios.post("http://localhost:3001/auth/login", { email, password }, { withCredentials: true })
+    axios.post(`${API_BASE_URL}/auth/login`, { email, password }, { withCredentials: true })
       .then(result => {
         console.log(result.data.isMFARegistered);
 

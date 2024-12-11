@@ -1,17 +1,17 @@
 import React, { useEffect, useState } from "react";
 import { QRCodeCanvas } from "qrcode.react";
-import qrcode from "qrcode";
+import { API_BASE_URL } from "../constants";
 import './MFAsetup.css';
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 const MFASetup = () => {
-    const [qrdata, setQrdata] = useState("http://localhost:3001");
+    const [qrdata, setQrdata] = useState();
     const [otpauth, setOtpauth] = useState();
     const [secret, setSecret] = useState();
     const navigate = useNavigate();
 
     useEffect(() => {
-        axios.get("http://localhost:3001/auth/mfa/mfasetup", { withCredentials: true })
+        axios.get(`${API_BASE_URL}/auth/mfa/mfasetup`, { withCredentials: true })
             .then(result => {
                 if (result.data.success) {
                     setQrdata(result.data.imageUrl);
@@ -28,7 +28,7 @@ const MFASetup = () => {
 
 
     const handlecompletesetup = () => {
-        axios.post("http://localhost:3001/auth/mfa/mfaregister", { secret }, { withCredentials: true })
+        axios.post(`${API_BASE_URL}/auth/mfa/mfaregister`, { secret }, { withCredentials: true })
             .then(result => {
                 if (result.data.success) {
                     alert("You have successfully setup MFa")
