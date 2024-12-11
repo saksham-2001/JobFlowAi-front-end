@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/JobFlowAi-front-end/static/css/main.996e4d93.css",
-    "main.js": "/JobFlowAi-front-end/static/js/main.b684aeae.js",
+    "main.css": "/JobFlowAi-front-end/static/css/main.e73ed63f.css",
+    "main.js": "/JobFlowAi-front-end/static/js/main.f4412d67.js",
     "static/js/453.ed3810f9.chunk.js": "/JobFlowAi-front-end/static/js/453.ed3810f9.chunk.js",
     "index.html": "/JobFlowAi-front-end/index.html",
-    "main.996e4d93.css.map": "/JobFlowAi-front-end/static/css/main.996e4d93.css.map",
-    "main.b684aeae.js.map": "/JobFlowAi-front-end/static/js/main.b684aeae.js.map",
+    "main.e73ed63f.css.map": "/JobFlowAi-front-end/static/css/main.e73ed63f.css.map",
+    "main.f4412d67.js.map": "/JobFlowAi-front-end/static/js/main.f4412d67.js.map",
     "453.ed3810f9.chunk.js.map": "/JobFlowAi-front-end/static/js/453.ed3810f9.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.996e4d93.css",
-    "static/js/main.b684aeae.js"
+    "static/css/main.e73ed63f.css",
+    "static/js/main.f4412d67.js"
   ]
 }
