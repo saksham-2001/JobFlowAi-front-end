@@ -41,8 +41,15 @@ const LoginPage = () => {
     e.preventDefault()
     axios.post("http://localhost:3001/auth/login", { email, password }, { withCredentials: true })
       .then(result => {
-        console.log(result.data);
-        if (result.data.success) {
+        console.log(result.data.isMFARegistered);
+
+
+        if (result.data.isMFARegistered) {
+         // navigate(`/mfaverify/${email}`)
+         navigate("/mfaverify", { state: { email } });
+
+        }
+        else if (result.data.success) {
 
           navigate("/home")
           console.log(result.data.message);
