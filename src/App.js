@@ -6,6 +6,7 @@ import SignupPage from './pages/Signuppage.js';
 import Homepage from './pages/homepage.js';
 import MFASetup from './pages/MFAsetup.js';
 import MFAverify from './pages/MFAverify.js';
+import ProfilePage from './pages/Profilepage.js';
 import './App.css';
 
 function App() {
@@ -27,6 +28,7 @@ function App() {
           <Route path="/home" element={<Homepage />} />
           <Route path="/mfasetup" element={<MFASetup />} />
           <Route path="/mfaverify" element={<MFAverify />} />
+          <Route path ="/profile" element={<ProfilePage/>} />
         </Routes>
       </div>
     </Router>

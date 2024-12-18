@@ -7,6 +7,7 @@ import { API_BASE_URL } from '../constants';
 
 function App() {
  const[name, setName]= useState('User');
+ const[email, setEmail]= useState("");
  const[isMFAregistered, setIsMFAregistered] = useState(false);
   const navigate = useNavigate();
 
@@ -16,6 +17,8 @@ function App() {
         if (result.data.success) {
           console.log(result);
           setName(result.data.name);
+          setEmail(result.data.email);
+          console.log(result.data.email);
           setIsMFAregistered(result.data.isregistered);
           
         }
@@ -40,6 +43,10 @@ function App() {
     navigate('/login');} 
   }).catch(err=>{console.log(err)})
   };
+
+  const handleProfile =()=>{
+    navigate('/profile', {state:{email}});
+  }
   
   const handleMFAsetup =() =>{
     navigate('/mfasetup');
@@ -67,6 +74,11 @@ function App() {
                 MFAsetup
               </button>
             </li>)}
+            <li>
+              <button className="logout-button" onClick={handleProfile}>
+                Profile
+              </button>
+            </li>
    
           </ul>
         </nav>
